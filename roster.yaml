@@ -1,0 +1,164 @@
+# 派克工作室在岗名册
+# 机器人标识只允许出现在本文件。密钥、账号、页面地址、订阅不在这里。
+# reports_to：另一岗的 slug，或「董事长」。
+# downstream：交接对象的 slug。条件见 note，细节以该岗技能为准。
+
+bots:
+  - slug: dandan
+    name: 蛋蛋｜总办主任
+    agent_id: "3ebd0bee-f8af-4989-a024-ae4dfdbe1b6e"
+    reports_to: 董事长
+    downstream:
+      - pipi
+      - chouchou
+      - deal-hunter
+      - install-engineer
+    cadence: >-
+      周五约 20:55 经营周报（有交付记录）。
+      每日经营日报例程未核实。
+      20:15 核查与 20:30 简报已暂停，不恢复、不新建。
+    skill: skills/dandan/SKILL.md
+    note: 督办下游四岗。六六不归本岗管。
+
+  - slug: pipi
+    name: 屁屁PP｜公众号总运营官
+    agent_id: "d73466cb-751c-49f2-8559-3942631e5b94"
+    reports_to: dandan
+    downstream:
+      - content-strategy
+      - chief-writer
+      - managing-editor
+      - visual-director
+      - growth-ops
+    cadence: >-
+      日报类例程未验证，是否在跑未核实。
+      不为此新建唤醒。醒来则向蛋蛋交当日状态。
+    skill: skills/pipi/SKILL.md
+    note: 总编辑部只用于开题和终审。内容编辑群已停用。
+
+  - slug: chouchou
+    name: 臭臭｜知识库
+    agent_id: "619a1c22-9619-402f-b724-e2351556f306"
+    reports_to: dandan
+    downstream: []
+    cadence: >-
+      每日 AI 简报约 08:07–08:30（有完成记录），信源含 X。
+      周一这期合并三个库的周更。
+      独立周更例程暂停未删，不恢复、不新建。
+    skill: skills/chouchou/SKILL.md
+    note: 无下游。为各岗提供只读知识；审美库供视觉艺术总监和屁屁使用。
+
+  - slug: deal-hunter
+    name: 商单猎手
+    agent_id: "0314db11-6ff3-45f4-a01b-a18548560fc4"
+    reports_to: dandan
+    downstream:
+      - growth-ops
+    cadence: >-
+      每周一 09:00「每周商单清单」（flexible）。
+      清单是否每期都有产出：未核实。不为此加唤醒。
+    skill: skills/deal-hunter/SKILL.md
+    note: 外联草稿交蛋蛋。董事长批准后，才由增长运营总监或董事长按外发规则执行。
+
+  - slug: install-engineer
+    name: 装机工程师
+    agent_id: "bf76b64d-7929-4111-9efb-2b6e6fab61cf"
+    reports_to: dandan
+    downstream: []
+    cadence: >-
+      台账口径为每周四 10:00 交付，该例程未核实。
+      telegram-bridge 由 webhook 触发。Telegram 早报已删除，不重建。
+    skill: skills/install-engineer/SKILL.md
+    note: 装好的东西交给董事长直接用，同一份摘要交蛋蛋。无新安装则安静。
+
+  - slug: liuliu
+    name: 六六｜私人助理
+    agent_id: "2C12DD12-DA53-423F-B58F-C90F303E65A1"
+    reports_to: 董事长
+    downstream: []
+    cadence: >-
+      现有后台唤醒：Periodic proactive work、Inactivity check-in。
+      无新私事不发消息。不新增唤醒。
+    skill: skills/liuliu/SKILL.md
+    note: 私事私聊直报董事长，不进经营汇报，不归蛋蛋督办。
+
+  - slug: content-strategy
+    name: 内容策略总监
+    agent_id: "923e2284-85e9-483d-99e3-30c73756bb43"
+    reports_to: pipi
+    downstream:
+      - chief-writer
+    cadence: 无已核实例程。屁屁派单才做。不新增唤醒。
+    skill: skills/content-strategy/SKILL.md
+    note: 选题卡交首席撰稿人，并向屁屁汇报。
+
+  - slug: chief-writer
+    name: 首席撰稿人
+    agent_id: "09fd4ee4-1214-4aac-b0bf-74c3ac302f73"
+    reports_to: pipi
+    downstream:
+      - managing-editor
+    cadence: 无已核实例程。有选题卡或退稿才写。不新增唤醒。
+    skill: skills/chief-writer/SKILL.md
+    note: 初稿交责任编辑。版本用一对一交接卡交屁屁，不在群里发。
+
+  - slug: managing-editor
+    name: 责任编辑
+    agent_id: "f857a228-bf93-4ddd-8b1a-ef84ae8418f6"
+    reports_to: pipi
+    downstream:
+      - visual-director
+      - chief-writer
+    cadence: 无已核实例程。只审屁屁派来的稿。不新增唤醒。
+    skill: skills/managing-editor/SKILL.md
+    note: 文字过审后交视觉艺术总监。返工或退稿回首席撰稿人。
+
+  - slug: visual-director
+    name: 视觉艺术总监
+    agent_id: "b4461fec-13ce-48b6-9fae-12c4b9100ba4"
+    reports_to: pipi
+    downstream:
+      - growth-ops
+    cadence: 无已核实例程。文字过审的稿交来才做。不新增唤醒。
+    skill: skills/visual-director/SKILL.md
+    note: 排版终稿交增长运营总监做草稿和预览。
+
+  - slug: growth-ops
+    name: 增长运营总监
+    agent_id: "f34f969e-4356-49b7-a4bd-21d8495381a2"
+    reports_to: pipi
+    downstream:
+      - deal-hunter
+      - pipi
+    cadence: 无已核实例程。有后台数据或已批准的写操作才做。不新增唤醒。
+    skill: skills/growth-ops/SKILL.md
+    note: 账号数据留给商单猎手读取。复盘交屁屁。预览经蛋蛋核验后才送给董事长。
+
+  - slug: tibot
+    name: tibot
+    agent_id: "aabd942a-88a8-4ede-8033-fb3c867c27d0"
+    reports_to: 董事长
+    downstream: []
+    cadence: X 每日简报已暂停未删。不恢复、不新建。没有单独指派就静默。
+    skill: skills/tibot/SKILL.md
+    note: X 情报已并入臭臭每日简报。本岗不再出独立日报。
+
+  - slug: bot-duplicator
+    name: BotDuplicator
+    agent_id: "632c7d29-eede-46c2-82a5-bc6bbc176e59"
+    reports_to: 董事长
+    downstream: []
+    cadence: 无例程。按需唤醒。没有复制任务就安静。
+    skill: skills/bot-duplicator/SKILL.md
+    note: 只做复制和交接。复制后必须验证新旧例程不会各跑一遍。
+
+  - slug: dr-eggbot
+    name: dr eggbot
+    agent_id: "cce22ffc-c83f-443f-be9e-2a93c77f1a03"
+    reports_to: 董事长
+    downstream: []
+    cadence: >-
+      transcript-healthcheck（周一 08:44）与 routine-healthcheck（周一 08:49）
+      均暂停，永不恢复，不新建替代巡检。
+    skill: skills/dr-eggbot/SKILL.md
+    note: 编码派单给 Cursor 云代理。不运维节点和线上服务。
